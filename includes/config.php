@@ -5,7 +5,7 @@
 $db_server = "localhost";
 $db_user = "root";
 $db_psw = "";
-$db_name = "Avito2";
+$db_name = "";
 
 // Create connection
 try {
