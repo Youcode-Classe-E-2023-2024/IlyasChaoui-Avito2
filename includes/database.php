@@ -1,10 +1,15 @@
 <?php
 
-include('config.php');
+include('./config.php');
+$connection
 
 //Creation du base donnée
 
-$Avito2 = "CREATE DATABASE IF NOT EXISTS Avito2";
- 
+$create = "CREATE DATABASE IF NOT EXISTS Avito2";
+if(mysqli_query($connection, $create)){
+    
+
+}
+
 
 ?>

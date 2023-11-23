@@ -1,5 +1,6 @@
 <?php
 
+$connection = "";
 
 // Database connection parameters
 $db_server = "localhost";
