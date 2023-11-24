@@ -3,7 +3,6 @@
 include("config.php");
 
 
-
 // Select database
 mysqli_select_db($connection, 'avito2');
 

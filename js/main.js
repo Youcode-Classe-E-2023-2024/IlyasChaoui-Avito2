@@ -1,4 +1,4 @@
-<script>
+
         // Select all elements with the class 'pswd' and add an event listener for the 'input' event
         document.querySelectorAll('.pswd').forEach(function (element) {
             element.addEventListener('input', checkPassword);
@@ -60,5 +60,3 @@
 
         // Add event listener for the toggle button
         document.getElementById('toggleBtn').addEventListener('change', togglePasswordVisibility);
-
-    </script>
