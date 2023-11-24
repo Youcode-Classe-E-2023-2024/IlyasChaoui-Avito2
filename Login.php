@@ -1,3 +1,5 @@
+
+
 <?php
 
 include('./includes/config.php');
@@ -14,6 +16,7 @@ include('./includes/config.php');
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
 </head>
 
 <body>
@@ -29,7 +32,7 @@ include('./includes/config.php');
             </div>
             <!-- Login form -->
             <div class="signup">
-                <form class="form" action="" method="post">
+                <form class="form" action="./includes/LoginTraitement.php" method="post">
                     <label for="chk" aria-hidden="true">Login</label>
                     <input type="email" name="email" placeholder="Email" required="">
                     <div class="password-container">
@@ -39,7 +42,7 @@ include('./includes/config.php');
                             <input id="toggleBtn" type="checkbox">
                         </label>
                     </div>
-                    <button>Login</button>
+                    <button type="submit" name="submit">Sign up</button>
                 </form>
             </div>
 
@@ -50,26 +53,14 @@ include('./includes/config.php');
                     <input type="number" name="PhoneNumber" placeholder="Phone Number" required="">
                     <select class="role-label" id="gender" name="role">
                         <!-- <option value="male">Role</option> -->
-                        <option value="User">Viewer</option>
+                        <option value="Viewer">Viewer</option>
                         <option value="Annoncer">Announcer</option>
                     </select>
                     <input type="email" name="email" placeholder="Email" required="">
                     <input class="pswd" type="password" name="pswd" placeholder="Password" required="">
 
                     <button type="submit" name="submit">Sign up</button>
-                    <script>
-                        <?php
-                        if (isset($_POST['submit'])) {
-                        ?>
-                            Swal.fire({
-                                title: "Good job!",
-                                text: "You clicked the button!",
-                                icon: "success"
-                            });
-                        <?php
-                        }
-                        ?>
-                    </script>
+
 
 
                 </form>
