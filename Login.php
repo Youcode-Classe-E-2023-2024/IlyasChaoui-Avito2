@@ -45,10 +45,10 @@ include('./includes/config.php');
                 <form action="" method="post">
                     <label for="chk" aria-hidden="true">Sign up</label>
                     <input type="text" name="txt" placeholder="Username" required="">
-                    <select class="role-label" id="gender" name="gender">
-                        <option value="male">Role</option>
-                        <option value="female">User</option>
-                        <option value="non-binary">Announcer</option>
+                    <select class="role-label" id="gender" name="role">
+                        <!-- <option value="male">Role</option> -->
+                        <option value="User">User</option>
+                        <option value="Annoncer">Announcer</option>
                     </select>
                     <input class="pswd" type="password" name="pswd" placeholder="Password" required="">
                     <input class="pswd" type="password" name="pswd" placeholder="Confirm password" required="">

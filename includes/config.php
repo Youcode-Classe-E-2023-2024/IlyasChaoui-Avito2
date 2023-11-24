@@ -6,11 +6,11 @@ $connection = "";
 $db_server = "localhost";
 $db_user = "root";
 $db_psw = "";
-$db_name = "";
+$db_name = "avito2";
 
 // Create connection
 try {
-    $connection = mysqli_connect($db_server, $db_user, $db_psw, $db_name);
+    $connection = mysqli_connect($db_server, $db_user, $db_psw);
 } catch (mysqli_sql_exception) {
     echo "Connection failed.<br>";
 }
