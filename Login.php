@@ -1,5 +1,3 @@
-
-
 <?php
 
 include('./includes/config.php');
@@ -14,7 +12,8 @@ include('./includes/config.php');
     <title>Slide Navbar</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
 
 </head>
