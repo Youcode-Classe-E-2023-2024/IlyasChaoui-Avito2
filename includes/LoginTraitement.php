@@ -2,6 +2,7 @@
 
 @include './config.php';
 
+
 session_start();
 
 if (isset($_POST['submit'])) {
@@ -22,11 +23,11 @@ if (isset($_POST['submit'])) {
         if (password_verify($CheckPass, $row['Password'])) {
 
             if ($row['Role'] == 'Annoncer') {
-                $_SESSION['Announcer_name'] = $row['Id'];
-                header('location: ../Annoncer.php');
+                $_SESSION['user'] = $row['Id'];
+                header('location: ../pages/Annoncer.php');
             } elseif ($row['Role'] == 'Viewer') {
-                $_SESSION['Viewer_name'] = $row['Id'];
-                header('location: ../Viewer.php');
+                $_SESSION['user'] = $row['Id'];
+                header('location: ../pages/Viewer.php');
             }
         } else {
             echo 'Incorrect email or password!';

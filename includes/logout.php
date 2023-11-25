@@ -1,11 +1,9 @@
 <?php
-
-@include './config.php';
-
 session_start();
-session_unset();
+unset($_SESSION['user']);
 session_destroy();
-
-header('location:../Login.php');
-
+if (empty($_SESSION['user'])) {
+    header('Location: ../Login.php');
+    echo '<script>alert("You are loged out.")</script>';
+}
 ?>
