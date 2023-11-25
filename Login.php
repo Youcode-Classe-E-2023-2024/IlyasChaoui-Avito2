@@ -10,7 +10,7 @@ include('./includes/config.php');
 
 <head>
     <title>Slide Navbar</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -29,6 +29,17 @@ include('./includes/config.php');
                 <img id="OpenEye" src="pictures/open.jpg" alt="" class="open">
                 <img id="CloseEye" src="pictures/close.jpg" alt="" class="close">
             </div>
+
+            <?php
+            session_start();
+            // Check if there is an error message in the session
+            if (isset($_SESSION['error_message'])) {
+                echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+                // Clear the error message from the session
+                unset($_SESSION['error_message']);
+            }
+            ?>
+
             <!-- Login form -->
             <div class="signup">
                 <form class="form" action="./includes/LoginTraitement.php" method="post">

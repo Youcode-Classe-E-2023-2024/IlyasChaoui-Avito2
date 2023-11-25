@@ -83,6 +83,14 @@ label {
     transition: .5s ease-in-out;
 }
 
+.error-message {
+    position: absolute;
+    color: red;
+    margin-top: 100px;
+    margin-left: 70px;
+}
+
+
 input {
     width: 60%;
     height: 20px;

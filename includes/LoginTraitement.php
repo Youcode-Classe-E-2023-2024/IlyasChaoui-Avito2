@@ -30,9 +30,15 @@ if (isset($_POST['submit'])) {
                 header('location: ../pages/Viewer.php');
             }
         } else {
-            echo 'Incorrect email or password!';
+
+            $_SESSION['error_message'] = 'Incorrect email or password!';
+            header('location: ../Login.php');
+            exit();
         }
     } else {
-        echo 'Incorrect email or password!';
+
+        $_SESSION['error_message'] = 'Incorrect email or password!';
+        header('location: ../Login.php');
+        exit();
     }
 }
