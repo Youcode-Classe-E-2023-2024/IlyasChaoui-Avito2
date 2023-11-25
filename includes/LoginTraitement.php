@@ -5,6 +5,12 @@
 
 session_start();
 
+$_SESSION["session"] = [
+    'role' => '',
+    'username' => '',
+    'user' => ''
+];
+
 if (isset($_POST['submit'])) {
 
     mysqli_select_db($connection, 'Avito2');
@@ -21,12 +27,23 @@ if (isset($_POST['submit'])) {
 
         // Use password_verify to check if the entered password is correct
         if (password_verify($CheckPass, $row['Password'])) {
-
+            // $_SESSION['session']['user'] = $row['Id'];
+            // $_SESSION['session']['username'] = $row['Username'];
+            // $_SESSION['session']['role'] = $row['Role'] == 'Annoncer' ? 'Annoncer' : 'Viewer';
+            // $str = 'location: ../pages/'.$_SESSION['session']['role'].'.php';
+            // var_dump($str);
             if ($row['Role'] == 'Annoncer') {
                 $_SESSION['user'] = $row['Id'];
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['role'] = $row['Role'];
+
                 header('location: ../pages/Annoncer.php');
             } elseif ($row['Role'] == 'Viewer') {
                 $_SESSION['user'] = $row['Id'];
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['role'] = $row['Role'];
+
+
                 header('location: ../pages/Viewer.php');
             }
         } else {
