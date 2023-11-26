@@ -155,7 +155,7 @@ $result = mysqli_query($connection, $query);
 
                                                     </div>
                                                     <div class="a-size">
-                                                        <?php echo $row['Title'] . '<br>' . '<span style="color:rgb(125, 125, 125);font-weight: 100;";>' . $row['Phone_number'] . '</span>' . '<br> <br><br>' . '<span class="Description">' . $row['Description'] . '</span>'; ?>
+                                                        <?php echo $row['Title'] . '<br>' . '<span style="color:rgb(125, 125, 125);font-weight: 100;";>' . $_SESSION['PhoneNumber'] . '</span>' . '<br> <br><br>' . '<span class="Description">' . $row['Description'] . '</span>'; ?>
                                                     </div>
 
 
@@ -179,16 +179,15 @@ $result = mysqli_query($connection, $query);
                                                 </a>
                                             </div>
                                             <div class="flex flex-row justify-between">
-                                                <div class="b animate-pulse mx-auto h-16 w-64 flex justify-center items-center">
-                                                    <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
-                                                    </div>
-                                                    <a class="text-center text-white font-semibold z-10 pointer-events-none">DELETE</a>
-                                                </div>
-                                                <div class="b animate-pulse mx-auto h-16 w-64 flex justify-center items-center">
-                                                    <div class="i h-12 w-20 bg-blue-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
-                                                    </div>
-                                                    <a class="text-center text-white font-semibold z-10 pointer-events-none">EDIT</a>
-                                                </div>
+                                                <a href="./EditAnnonce.php" class="block animate-pulse dur mx-auto h-16 w-64 flex justify-center items-center">
+                                                    <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
+                                                    <span class="text-center text-white font-semibold z-50 pointer-events-none">DELETE</span>
+                                                </a>
+                                                <a href="http://localhost/IlyasChaoui-Avito2/pages/EditAnnonce.php?Id=<?php echo $row['Id']; ?>" class="block animate-pulse mx-auto h-16 w-64 flex justify-center items-center">
+                                                    <div class="i h-12 w-20 bg-blue-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
+                                                    <span class="text-center text-white font-semibold z-50 pointer-events-none">EDIT</span>
+                                                </a>
+
                                             </div>
                                         </div>
                                     </div>

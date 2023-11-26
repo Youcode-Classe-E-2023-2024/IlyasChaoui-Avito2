@@ -6,7 +6,7 @@
 
         // Function to toggle password visibility
         function togglePasswordVisibility() {
-            console.log("hi")
+            // console.log("hi")
             // Select the password input and the eye icons
             const passwordInput = document.querySelector('.pswd');
             const OpenEye = document.getElementById('OpenEye');

@@ -20,6 +20,7 @@ $warningScript = '';
     <?php echo $warningScript; ?>
     <title>Créer votre annonce</title>
 </head>
+
 <style>
     /* @import url("https://fonts.googleapis.com/css?family=Lobster&display=swap") repeat scroll 0 0 rgba(0, 0, 0, 0); */
 
@@ -158,7 +159,7 @@ $warningScript = '';
         <div class="">
             <a href="../includes/logout.php" class=" mx-3 hover:text-red-100  px-2 py-2 text-white cursor-pointer "><i class="fa-solid fa-right-from-bracket text-white hover:text-red-800"></i></a>
         </div>
-    </aside>m
+    </aside>
 
 
 
@@ -194,7 +195,7 @@ $warningScript = '';
                                 <input type="text" name="username" placeholder="Username" value="<?php echo $_SESSION['username']; ?>" required class="p-5 placeholder-white font-bold bg-transparent border-4 border-white my-3 w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" readonly>
                                 <input type="text" name="title" placeholder="Title" required class="p-5 placeholder-white font-bold bg-transparent border-4 border-white my-3 w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <input type="number" min=0 name="price" placeholder="Price" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                <input type="number" name="Phone_number" placeholder="Phone number" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <!-- <input type="number" name="Phone_number" placeholder="Phone number"  value="<?php echo $_SESSION['PhoneNumber']; ?>" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" readonly> -->
                                 <input type="text" name="description" placeholder="Description" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full h-28 rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                             <div>

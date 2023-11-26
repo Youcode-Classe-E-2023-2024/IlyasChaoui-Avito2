@@ -12,28 +12,8 @@ if (isset($_POST['submit'])) {
     $user_name = mysqli_real_escape_string($connection, $_POST['username']);
     $Title = mysqli_real_escape_string($connection, $_POST['title']);
     $Price = mysqli_real_escape_string($connection, $_POST['price']);
-    $Phone_number = mysqli_real_escape_string($connection, $_POST['Phone_number']);
     $Description = mysqli_real_escape_string($connection, $_POST['description']);
-    $id = $_POST['id'];
-
-    // Get User_id based on the provided username
-    $getUserId = "SELECT Id FROM users WHERE username = ?";
-    $getUserStmt = mysqli_prepare($connection, $getUserId);
-
-    if (!$getUserStmt) {
-        die("Error in preparing statement: " . mysqli_error($connection));
-    }
-
-    mysqli_stmt_bind_param($getUserStmt, "s", $user_name);
-    mysqli_stmt_execute($getUserStmt);
-    mysqli_stmt_bind_result($getUserStmt, $user_id);
-
-    // Fetch the result
-    mysqli_stmt_fetch($getUserStmt);
-
-
-
-    mysqli_stmt_close($getUserStmt);
+    $id = $_POST['Id'];
 
     // File upload handling
     $targetDir = "../../pictures/photoimport/";
@@ -48,14 +28,14 @@ if (isset($_POST['submit'])) {
         // Upload file to server
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
             // Use prepared statement to prevent SQL injection
-            $Insert_sql = "UPDATE INTO annonce (User_id, username, title, price, Phone_number, description, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $Insert_sql = "UPDATE Annonce SET Title=?, Price=?, Description=?, Image=? WHERE Id=?";
             $stmt = mysqli_prepare($connection, $Insert_sql);
 
             if (!$stmt) {
                 die("Error in preparing statement: " . mysqli_error($connection));
             }
 
-            mysqli_stmt_bind_param($stmt, "ississs", $user_id, $user_name, $Title, $Price, $Phone_number, $Description, $targetFilePath);
+            mysqli_stmt_bind_param($stmt, "sissi", $Title, $Price, $Description, $targetFilePath, $id);
 
             // Execute the statement
             $result = mysqli_stmt_execute($stmt);
@@ -69,21 +49,17 @@ if (isset($_POST['submit'])) {
                 mysqli_close($connection);
 
                 // Redirect to a confirmation page
-                header("Location: ../../pages/Annoncer.php?status=Publication updated");
+                header("Location: ../../pages/MesAnnonces.php?status=Publication updated");
                 exit();
             } else {
-                echo "Error in inserting data: " . mysqli_stmt_error($stmt);
+                echo "Error in updating data: " . mysqli_stmt_error($stmt);
             }
         } else {
             echo "Error uploading image to the server.";
         }
     } else {
-        // Set the JavaScript code to the variable
-        header("Location: ../../pages/Annoncer.php");
-        echo "Error uploading image to the server.";
-        
+        // Handle the case when the file format is not allowed
+        header("Location: ../../pages/Annoncer.php?error=Invalid file format");
+        exit();
     }
-
-    // Close the connection
-    mysqli_close($connection);
 }

@@ -13,12 +13,13 @@ body {
 
 .wrapper {
     animation: scroll 100s linear infinite;
-    background: url("../pictures/istockphoto-157308943-612x612.jpg"),
+    /* background: url("../pictures/istockphoto-157308943-612x612.jpg"), */
         #111111;
     color: #eee;
     height: 100vh;
+    background-size: contain;
     min-width: 360px;
-    width: 100%;
+    width: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
