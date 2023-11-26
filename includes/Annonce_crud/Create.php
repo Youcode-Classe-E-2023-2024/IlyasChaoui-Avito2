@@ -1,6 +1,8 @@
 <?php
 $warningScript = '';
 
+session_start();
+
 if (isset($_POST['submit'])) {
     require_once '../config.php';
 
@@ -28,10 +30,7 @@ if (isset($_POST['submit'])) {
     // Fetch the result
     mysqli_stmt_fetch($getUserStmt);
 
-    // Check if a user with the provided username exists
-    if (!$user_id) {
-        die("User with username $user_name not found.");
-    }
+
 
     mysqli_stmt_close($getUserStmt);
 
@@ -79,13 +78,9 @@ if (isset($_POST['submit'])) {
         }
     } else {
         // Set the JavaScript code to the variable
-        $warningScript = '<script>
-            swal({
-                title: "ATTENTION!",
-                text: "You need to import a picture!",
-                icon: "warning"
-            });
-        </script>';
+        header("Location: ../../pages/Annoncer.php");
+        echo "Error uploading image to the server.";
+        
     }
 
     // Close the connection
