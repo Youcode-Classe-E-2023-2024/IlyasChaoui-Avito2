@@ -5,11 +5,11 @@
 
 session_start();
 
-$_SESSION["session"] = [
-    'role' => '',
-    'username' => '',
-    'user' => ''
-];
+// $_SESSION["session"] = [
+//     'role' => '',
+//     'username' => '',
+//     'user' => ''
+// ];
 
 if (isset($_POST['submit'])) {
 
