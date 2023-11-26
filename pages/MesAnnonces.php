@@ -179,7 +179,7 @@ $result = mysqli_query($connection, $query);
                                                 </a>
                                             </div>
                                             <div class="flex flex-row justify-between">
-                                                <a href="./EditAnnonce.php" class="block animate-pulse dur mx-auto h-16 w-64 flex justify-center items-center">
+                                                <a href="http://localhost/IlyasChaoui-Avito2/includes/Annonce_crud/Delete.php?Id=<?php echo $row['Id']; ?>" class="block animate-pulse dur mx-auto h-16 w-64 flex justify-center items-center">
                                                     <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
                                                     <span class="text-center text-white font-semibold z-50 pointer-events-none">DELETE</span>
                                                 </a>
