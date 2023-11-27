@@ -69,7 +69,7 @@ $result = mysqli_query($connection, $query);
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -25px;">
+                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -69px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
@@ -213,7 +213,7 @@ $result = mysqli_query($connection, $query);
 
 
     <footer>
-        <div class="my-96 bg-gray-800 py-4 text-gray-400">
+        <div class="bg-gray-800 py-4 text-gray-400" style="margin-top: 100vh;">
             <div class="container px-4 mx-auto">
                 <div class="-mx-4 flex flex-wrap justify-between">
                     <div class="px-4 my-4 w-full xl:w-1/5">
