@@ -81,8 +81,11 @@ if (isset($_POST['submit'])) {
         header("Location: ../../pages/Annoncer.php");
         echo "Error uploading image to the server.";
         
+        
+        // Close the connection
+        mysqli_close($connection);
     }
-
-    // Close the connection
-    mysqli_close($connection);
+    
+}else{
+   echo 'hiiiiiiiiiiiiiii';
 }
