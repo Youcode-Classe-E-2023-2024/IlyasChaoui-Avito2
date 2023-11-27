@@ -14,7 +14,6 @@ if (isset($_POST['submit'])) {
 
     $name = mysqli_real_escape_string($connection, $_POST['Username']);
     $phonenumber = $_SESSION['PhoneNumber'];
-    var_dump($phonenumber);
     $user_type = $_POST['role'];
     $email = mysqli_real_escape_string($connection, $_POST['email']);
     $password = password_hash($_POST['pswd'], PASSWORD_DEFAULT);        
