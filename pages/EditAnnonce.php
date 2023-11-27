@@ -18,6 +18,7 @@ if (isset($_GET['Id'])) {
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -247,6 +248,7 @@ if (isset($_GET['Id'])) {
                                 </g>
                             </g>
                         </svg>
+                        <input type="hidden" name="oldimage" value="<?php echo $row['Image']; ?>">
                         <input type="file" name="image" id="image"
                             class="border-4 bg-black absolute w-96 mx-12 opacity-0">
                         <span class="pl-2 mx-1">Add Picture</span>
@@ -265,7 +267,7 @@ if (isset($_GET['Id'])) {
                                         <circle cx="7.04807" cy="6.97256" r="2.5" id="svg_3"></circle>
                                     </g>
                                 </svg>
-                                <h1 class="inline text-2xl font-semibold leading-none">Ancian information</h1>
+                                <h1 class="inline text-2xl font-semibold leading-none">Old information</h1>
                             </div>
                         </div>
                         <div class="px-5 pb-5">
@@ -305,21 +307,21 @@ if (isset($_GET['Id'])) {
                             <div class="flex-none pt-2.5 pr-2.5 pl-1"></div>
                         </div>
                         <div class="px-5 pb-5">
-                            <input type="text" name="username" placeholder="Username"
+                            <input type="text" name="username" readonly placeholder="Username"
                                 value="<?php echo $_SESSION['username']; ?>"
                                 class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
                             <div class="flex">
-                                <div class="flex-grow w-1/4 pr-2"><input placeholder="Price"
-                                        value="<?php echo $row['Price'] . ' ' . 'MAD'; ?>" required
+                                <div class="flex-grow w-1/4 pr-2"><input placeholder="Price" name="price"
+                                        required
                                         class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
                                 </div>
                                 <div class="flex-grow"><input type="text" name="title" placeholder="Title"
-                                        value="<?php echo $row['Title']; ?>" required
+                                        required
                                         class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
                                 </div>
                             </div>
                             <input type="text" name="description" placeholder="Description"
-                                value="<?php echo $row['Description']; ?>"
+                                
                                 class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
                             <input type="hidden" value="<?php echo $row['Id'] ?>" name="Id">
                         </div>
