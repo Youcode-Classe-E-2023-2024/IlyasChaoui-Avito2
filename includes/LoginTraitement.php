@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
             if ($row['Role'] == 'Annoncer') {
                 $_SESSION['user'] = $row['Id'];
                 $_SESSION['username'] = $row['Username'];
+                $_SESSION['Image'] = $row['Image'];
                 $_SESSION['PhoneNumber'] = $row['Phone_number'];
                 $_SESSION['role'] = $row['Role'];
                 $_SESSION['Email'] = $row['Email'];
@@ -43,6 +44,7 @@ if (isset($_POST['submit'])) {
             } elseif ($row['Role'] == 'Viewer') {
                 $_SESSION['user'] = $row['Id'];
                 $_SESSION['username'] = $row['Username'];
+                $_SESSION['Image'] = $row['Image'];
                 $_SESSION['PhoneNumber'] = $row['Phone_number'];
                 $_SESSION['role'] = $row['Role'];
                 $_SESSION['Email'] = $row['Email'];
