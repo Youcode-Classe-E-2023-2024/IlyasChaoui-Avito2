@@ -36,14 +36,17 @@ if (isset($_POST['submit'])) {
                 $_SESSION['user'] = $row['Id'];
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['PhoneNumber'] = $row['Phone_number'];
-                
                 $_SESSION['role'] = $row['Role'];
+                $_SESSION['Email'] = $row['Email'];
+                $_SESSION['Password'] = $row['Password'];
                 header('location: ../pages/Annoncer.php');
             } elseif ($row['Role'] == 'Viewer') {
                 $_SESSION['user'] = $row['Id'];
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['PhoneNumber'] = $row['Phone_number'];
                 $_SESSION['role'] = $row['Role'];
+                $_SESSION['Email'] = $row['Email'];
+                $_SESSION['Password'] = $row['Password'];
 
 
                 header('location: ../pages/Viewer.php');
