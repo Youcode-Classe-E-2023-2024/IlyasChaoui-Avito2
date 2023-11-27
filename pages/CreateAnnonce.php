@@ -13,6 +13,7 @@ $warningScript = '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -73,12 +74,15 @@ $warningScript = '';
     <!-------------------------------------Start Navbar  ------------------------------------>
 
     <!-- <div class="h-screen w-full z-20 fixed flex overflow-hidden"> -->
-    <div class="w-full z-20 fixed flex flex-col justify-between">
+    <div class="w-full z-50 fixed flex flex-col justify-between">
         <!-- Header -->
         <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
             <!-- Informação -->
-            <div class="flex flex-shrink-0 items-center space-x-4 text-white">
-                <div class="mx-96 flex z-50 ">
+            <div class="flex  items-center space-x-4 text-white font-bold">
+                <div class="w-20">
+                    <img src="../pictures/logo.png" alt="" width="100">
+                </div>
+                <div class="mx-100 flex z-50 " style="margin-left: 485px;">
                     <a href="./MesAnnonces.php">
                         <div class="b relative mx-10 h-10 w-36 flex justify-center items-center ">
                             <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
@@ -106,21 +110,22 @@ $warningScript = '';
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-col items-end ">
-                    <!-- Nome -->
-                    <div class="text-md font-medium ">
-                        <?php echo $_SESSION['username']; ?>
+                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -29px;">
+                    <div>
+                        <!-- Nome -->
+                        <div class="text-md font-medium text-gray-500 ">
+                            <?php echo $_SESSION['username']; ?>
+                        </div>
+                        <!-- Título -->
+                        <div class="text-sm font-regular">
+                            <?php echo $_SESSION['role']; ?>
+                        </div>
                     </div>
-                    <!-- Título -->
-                    <div class="text-sm font-regular">
-                        <?php echo $_SESSION['role']; ?>
-                    </div>
+                    <div class="mx-4 h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
                 </div>
 
-                <!-- Foto -->
-                <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
-
             </div>
+
         </header>
 
         <!-- Main -->
@@ -128,36 +133,37 @@ $warningScript = '';
     </div>
     <!-- Sidebar -->
     <aside class="h-screen z-20 fixed w-16 flex flex-col space-y-10 items-center justify-center  bg-gray-800 text-white">
-        <!-- Profile -->
-        <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-            </svg>
-        </div>
 
         <!-- Courses -->
-        <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-        </div>
+        <a href="./Annoncer.php">
+            <div class="h-10 w-10 text-white flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
 
-        <!-- Theme -->
-        <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-        </div>
+            </div>
+        </a>
 
-        <!-- Configuration -->
-        <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-        </div>
-        <div class="">
-            <a href="../includes/logout.php" class=" mx-3 hover:text-red-100  px-2 py-2 text-white cursor-pointer "><i class="fa-solid fa-right-from-bracket text-white hover:text-red-800"></i></a>
+
+        <!-- Profile -->
+        <a href="./UserProfile.php">
+            <div class="h-10 w-10 flex text-white items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+
+            </div>
+        </a>
+
+        <!-- Logout -->
+        <div class="z-50">
+            <a href="../includes/logout.php">
+                <div class="h-10 w-10 flex text-white items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                </div>
+            </a>
         </div>
     </aside>
 
@@ -218,6 +224,15 @@ $warningScript = '';
         <div class="flex h-screen bg-gray-100">
             <div class="m-auto">
                 <div>
+
+                    <?php
+                    // Check if there is an error message in the session
+                    if (isset($_SESSION['error_message'])) {
+                        echo '<div class="  text-red-500 bg">' . $_SESSION['error_message'] . '</div>';
+                        // Clear the error message from the session
+                        unset($_SESSION['error_message']);
+                    }
+                    ?>
                     <button type="button" class="relative w-full flex justify-center items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize   bg-black rounded-md hover:bg-gray-900  focus:outline-none   transition duration-300 transform active:scale-95 ease-in-out">
                         <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
                             <g>
@@ -233,6 +248,7 @@ $warningScript = '';
                         <p class="font-bold text-white">Cliquer pour importer une image</p>
 
                     </button>
+                    
                     <div class="mt-5 bg-white rounded-lg shadow">
                         <div class="flex">
                             <div class="flex-1 py-5 pl-5 overflow-hidden">
@@ -248,7 +264,7 @@ $warningScript = '';
                         </div>
 
                         <div class="px-5 pb-5">
-                            <input placeholder="Name" name="username" value="<?php echo $_SESSION['username']; ?>" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                            <input placeholder="Name" name="username" readonly value="<?php echo $_SESSION['username']; ?>" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
                             <div class="flex">
                                 <div class="flex-grow w-1/4 pr-2"><input placeholder="Price" name="price" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"></div>
                                 <div class="flex-grow"><input placeholder="Title" name="title" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"></div>
