@@ -59,7 +59,26 @@ if (isset($_POST['submit'])) {
         }
     } else {
         // Handle the case when the file format is not allowed
-        header("Location: ../../pages/Annoncer.php?error=Invalid file format");
+        header("Location: ../../pages/EditAnnonce.php?error=Invalid file format");
         exit();
     }
 }
+?>
+
+<!-- Ensure SweetAlert2 script is loaded -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- SweetAlert2 script -->
+<script>
+    <?php if ($result) { ?>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: "Update!",
+                text: "Your annonce file has been uploaded!",
+                icon: "success"
+            }).then(function () {
+                window.location.href = '../../pages/MesAnnonces.php?status=Publication updated';
+            });
+        });
+    <?php } ?>
+</script>
