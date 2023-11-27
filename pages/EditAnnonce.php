@@ -27,8 +27,6 @@ if (isset($_GET['Id'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <?php echo $warningScript; ?>
         <title>Créer votre annonce</title>
     </head>
     <style>
@@ -87,8 +85,11 @@ if (isset($_GET['Id'])) {
             <!-- Header -->
             <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
                 <!-- Informação -->
-                <div class="flex flex-shrink-0 items-center space-x-4 text-white">
-                    <div class="mx-96 flex z-50 ">
+                <div class="flex flex-row justify-between items-center space-x-4 text-white font-bold">
+                    <div>
+                        <img src="../pictures/open.jpg" alt="" width="80">
+                    </div>
+                    <div class="mx-100 flex z-50 ">
                         <a href="./MesAnnonces.php">
                             <div class="b relative mx-10 h-10 w-36 flex justify-center items-center ">
                                 <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
@@ -116,21 +117,22 @@ if (isset($_GET['Id'])) {
                     </div>
 
                     <!-- Texto -->
-                    <div class="flex flex-col items-end ">
-                        <!-- Nome -->
-                        <div class="text-md font-medium ">
-                            <?php echo $_SESSION['username']; ?>
+                    <div class="flex flex-row items-end ">
+                        <div>
+                            <!-- Nome -->
+                            <div class="text-md font-medium text-gray-500 ">
+                                <?php echo $_SESSION['username']; ?>
+                            </div>
+                            <!-- Título -->
+                            <div class="text-sm font-regular">
+                                <?php echo $_SESSION['role']; ?>
+                            </div>
                         </div>
-                        <!-- Título -->
-                        <div class="text-sm font-regular">
-                            <?php echo $_SESSION['role']; ?>
-                        </div>
+                        <div class="mx-4 h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
                     </div>
 
-                    <!-- Foto -->
-                    <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
-
                 </div>
+
             </header>
 
             <!-- Main -->
@@ -180,7 +182,7 @@ if (isset($_GET['Id'])) {
 
         <!-------------------------------------start container  ------------------------------------>
 
-        <article class="wrapper">
+        <!-- <article class="wrapper">
             <h2 class="title"></h2>
             <div class="flex my-32 bg-gray-800 justify-center backdrop-blur-2xl border-4 rounded-3xl" style=" height: 125vh;width: 30vw; ">
                 <div class="">
@@ -192,13 +194,13 @@ if (isset($_GET['Id'])) {
                         </div>
 
                         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <form class="space-y-6" action="../includes/Annonce_crud/Update.php" method="POST" enctype="multipart/form-data">
+                            <form class="space-y-6" action="../includes/Annonce_crud/Update.php" method="GET" enctype="multipart/form-data">
                                 <div class="flex flex-col">
                                     <div class="w-96 h-28 border-4 rounded-2xl flex flex-col justify-center">
                                         <div class="flex flex-col justify-center items-center">
                                             <img src="pictures/add.png" alt="add image" width="70" height="70" class="cursor-pointer" id="add">
                                             <img src="pictures/done.png" alt="image added" width="70" height="70" class="cursor-pointer hidden" id="done">
-                                            <input type="file" name="image" id="image" value="<?php echo $row['Image']; ?>" class="border-4 bg-black absolute w-32 mx-12 opacity-0">
+                                            <input type="file" name="image" id="image" value="1002-1696615923.jpg" class="border-4 bg-black absolute w-32 mx-12 opacity-0">
                                             <p class="font-bold text-white">Cliquer pour importer une image</p>
                                         </div>
                                     </div>
@@ -206,7 +208,7 @@ if (isset($_GET['Id'])) {
                                     <input type="text" name="title" placeholder="Title" value="<?php echo $row['Title']; ?>" required class="p-5 placeholder-white font-bold bg-transparent border-4 border-white my-3 w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <input type="number" min=0 name="price" placeholder="Price"value="<?php echo $row['Price']; ?>" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <!-- <input type="number" name="Phone_number" placeholder="Phone number" value="<?php echo $_SESSION['PhoneNumber']; ?>" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" readonly> -->
-                                    <input type="text" name="description" placeholder="Description"value="<?php echo $row['Description']; ?>" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full h-28 rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        <!-- <input type="text" name="description" placeholder="Description"value="<?php echo $row['Description']; ?>" required class="p-5 bg-transparent placeholder-white font-bold border-4 border-white my-3 block w-full h-28 rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <input type="hidden" value="<?php echo $row['Id'] ?>" name="Id">
                                 </div>
                                 <div>
@@ -221,25 +223,117 @@ if (isset($_GET['Id'])) {
                     </div>
                 </div>
             </div>
-        </article>
+        </article> --> -->
+
+        <!-- component -->
+        <form class="space-y-6" action="../includes/Annonce_crud/Update.php" method="post" enctype="multipart/form-data">
+            <div class="my-2 flex h-screen bg-gray-100">
+                <div class="m-auto">
+                    <div>
+                        <button type="button" class="relative w-full flex justify-center items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize   bg-black rounded-md hover:bg-gray-900  focus:outline-none   transition duration-300 transform active:scale-95 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                <g>
+                                    <rect fill="none" height="24" width="24"></rect>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <input type="file" name="image" id="image" class="border-4 bg-black absolute w-96 mx-12 opacity-0">
+                            <span class="pl-2 mx-1">Add Picture</span>
+                        </button>
+                        <div class="mt-5 bg-white rounded-lg shadow">
+                            <div class="flex">
+                                <div class="flex-1 py-5 pl-5 overflow-hidden">
+                                    <svg class="inline align-text-top" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                        <g>
+                                            <path d="m4.88889,2.07407l14.22222,0l0,20l-14.22222,0l0,-20z" fill="none" id="svg_1" stroke="null"></path>
+                                            <path d="m7.07935,0.05664c-3.87,0 -7,3.13 -7,7c0,5.25 7,13 7,13s7,-7.75 7,-13c0,-3.87 -3.13,-7 -7,-7zm-5,7c0,-2.76 2.24,-5 5,-5s5,2.24 5,5c0,2.88 -2.88,7.19 -5,9.88c-2.08,-2.67 -5,-7.03 -5,-9.88z" id="svg_2"></path>
+                                            <circle cx="7.04807" cy="6.97256" r="2.5" id="svg_3"></circle>
+                                        </g>
+                                    </svg>
+                                    <h1 class="inline text-2xl font-semibold leading-none">Ancian information</h1>
+                                </div>
+                            </div>
+                            <div class="px-5 pb-5">
+                                <input type="text" name="username" placeholder="Username" value="<?php echo $_SESSION['username']; ?>" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" readonly>
+                                <div class="flex">
+                                    <div class="flex-grow w-1/4 pr-2"><input type="number" min=0 name="price" placeholder="Price" value="<?php echo $row['Price']; ?>" readonly class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                    </div>
+                                    <div class="flex-grow"><input type="text" name="title" placeholder="Title" value="<?php echo $row['Title']; ?>" readonly class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                    </div>
+                                </div>
+                                <input type="text" name="description" placeholder="Description" value="<?php echo $row['Description']; ?>" readonly class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                            </div>
+                            <div class="flex">
+                                <div class="flex-1 py-5 pl-5 overflow-hidden">
+                                    <svg class="inline align-text-top" width="21" height="20.5" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                        <g>
+                                            <path d="m4.88889,2.07407l14.22222,0l0,20l-14.22222,0l0,-20z" fill="none" id="svg_1" stroke="null"></path>
+                                            <path d="m7.07935,0.05664c-3.87,0 -7,3.13 -7,7c0,5.25 7,13 7,13s7,-7.75 7,-13c0,-3.87 -3.13,-7 -7,-7zm-5,7c0,-2.76 2.24,-5 5,-5s5,2.24 5,5c0,2.88 -2.88,7.19 -5,9.88c-2.08,-2.67 -5,-7.03 -5,-9.88z" id="svg_2"></path>
+                                            <circle cx="7.04807" cy="6.97256" r="2.5" id="svg_3"></circle>
+                                        </g>
+                                    </svg>
+                                    <h1 class="inline text-2xl font-semibold leading-none">New information</h1>
+                                </div>
+                                <div class="flex-none pt-2.5 pr-2.5 pl-1"></div>
+                            </div>
+                            <div class="px-5 pb-5">
+                                <input type="text" name="username" placeholder="Username" value="<?php echo $_SESSION['username']; ?>" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                <div class="flex">
+                                    <div class="flex-grow w-1/4 pr-2"><input placeholder="Price" value="<?php echo $row['Price'] . ' ' . 'MAD'; ?>" required class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                    </div>
+                                    <div class="flex-grow"><input type="text" name="title" placeholder="Title" value="<?php echo $row['Title']; ?>" required class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                    </div>
+                                </div>
+                                <input type="text" name="description" placeholder="Description" value="<?php echo $row['Description']; ?>" class=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400">
+                                <input type="hidden" value="<?php echo $row['Id'] ?>" name="Id">
+                            </div>
+                            <hr class="mt-4">
+                            <div class="flex flex-row-reverse p-3">
+                                <div class="flex-initial pl-3">
+                                    <button type="submit" name="submit" class="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize   bg-black rounded-md hover:bg-gray-800  focus:outline-none focus:bg-gray-900  transition duration-300 transform active:scale-95 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z" opacity=".3"></path>
+                                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z">
+                                            </path>
+                                        </svg>
+                                        <span class="pl-2 mx-1">Save</span>
+                                    </button>
+                                </div>
+                                <div class="flex-initial">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
     <?php } else {
     echo "noting change";
 } ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         <?php
-        if ($task_status === 'uploaded') {
+        if (isset($task_status) && $task_status === 'uploaded') {
         ?>
-            swal({
+            Swal.fire({
                 title: "Update!",
                 text: "Your annonce file has been uploaded!",
                 icon: "success",
             });
         <?php
         }
-
         ?>
     </script>
+
 
     <?php echo $warningScript; ?>
 
