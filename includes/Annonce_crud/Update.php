@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
     $Price = mysqli_real_escape_string($connection, $_POST['price']);
     $Description = mysqli_real_escape_string($connection, $_POST['description']);
     $id = $_POST['Id'];
-
+    $oldimage = $_POST['oldimage'];
+    
     // File upload handling
     $targetDir = "../../pictures/photoimport/";
     $fileName = basename($_FILES["image"]["name"]);
@@ -25,6 +26,7 @@ if (isset($_POST['submit'])) {
     $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
 
     if (in_array($fileType, $allowTypes)) {
+        echo "hi";
         // Upload file to server
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
             // Use prepared statement to prevent SQL injection
@@ -58,9 +60,12 @@ if (isset($_POST['submit'])) {
             echo "Error uploading image to the server.";
         }
     } else {
-        // Handle the case when the file format is not allowed
-        header("Location: ../../pages/EditAnnonce.php?error=Invalid file format");
-        exit();
+        $Insert_sql = "UPDATE Annonce SET Title=?, Price=?, Description=?, Image=? WHERE Id=?";
+        $stmt = mysqli_prepare($connection, $Insert_sql);
+        mysqli_stmt_bind_param($stmt, "sissi", $Title, $Price, $Description, $oldimage, $id);
+            // Execute the statement
+            $result = mysqli_stmt_execute($stmt);
+        
     }
 }
 ?>
