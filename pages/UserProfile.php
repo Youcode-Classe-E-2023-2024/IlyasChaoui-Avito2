@@ -167,7 +167,7 @@ $result = mysqli_query($connection, $query);
 
                 <div class="pt-12 pb-8">
                     <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-                        Get In Touch
+                        Edit Profile
                     </button>
                 </div>
 
