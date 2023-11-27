@@ -69,7 +69,7 @@ $result = mysqli_query($connection, $query);
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -25px;">
+                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -70px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
