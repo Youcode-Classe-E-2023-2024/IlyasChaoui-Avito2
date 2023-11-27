@@ -157,7 +157,7 @@ $result = mysqli_query($connection, $query);
 
                                                     </div>
                                                     <div class="a-size">
-                                                        <?php echo $row['Title'] . '<br>' . '<span style="color:rgb(125, 125, 125);font-weight: 100;";>' . $row['Phone_number'] . '</span>' . '<br> <br><br>' . '<span class="Description">' . $row['Description'] . '</span>'; ?>
+                                                        <?php echo $row['Title'] . '<br>' . '<span style="color:rgb(125, 125, 125);font-weight: 100;";>' . $_SESSION['PhoneNumber'] . '</span>' . '<br> <br><br>' . '<span class="Description">' . $row['Description'] . '</span>'; ?>
                                                     </div>
 
 
@@ -200,7 +200,7 @@ $result = mysqli_query($connection, $query);
     </div>
 
     <footer>
-        <div class="my-96 bg-gray-800 py-4 text-gray-400">
+        <div class="my-96 bg-gray-800 py-4 text-gray-400"   style="margin-top: 100vh;">
             <div class="container px-4 mx-auto">
                 <div class="-mx-4 flex flex-wrap justify-between">
                     <div class="px-4 my-4 w-full xl:w-1/5">
