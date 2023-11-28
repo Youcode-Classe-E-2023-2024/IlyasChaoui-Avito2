@@ -6,6 +6,12 @@ include_once '../includes/config.php';
 mysqli_select_db($connection, 'avito2');
 
 
+
+if($_SESSION['role']!= 'Viewer'){
+    
+    header('location:./Annoncer.php');
+}
+
 $query = "SELECT * FROM annonce";
 $result = mysqli_query($connection, $query);
 
