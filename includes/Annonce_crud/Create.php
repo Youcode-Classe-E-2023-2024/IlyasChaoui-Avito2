@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
                 mysqli_close($connection);
 
                 // Redirect to a confirmation page
-                header("Location: ../../pages/Annoncer.php?status=Publication added");
+                header("Location: ../../pages/{$_SESSION['role']}.php?status=Publication added");
                 exit();
             } else {
                 echo "Error in inserting data: " . mysqli_stmt_error($stmt);
