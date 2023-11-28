@@ -4,10 +4,15 @@ include_once '../includes/checkLogin.php';
 include_once '../includes/config.php';
 
 mysqli_select_db($connection, 'avito2');
+$ID = $_SESSION['user'];
+$select = "SELECT * FROM users WHERE Id = ? ";
+$stmt = mysqli_prepare($connection, $select);
+mysqli_stmt_bind_param($stmt, "i", $ID);
+$result = mysqli_stmt_execute($stmt);
 
 
-$query = "SELECT * FROM annonce";
-$result = mysqli_query($connection, $query);
+// $query = "SELECT * FROM annonce";
+// $result = mysqli_query($connection, $query);
 
 
 ?>
@@ -47,35 +52,68 @@ $result = mysqli_query($connection, $query);
                 <div class="w-20">
                     <img src="../pictures/logo.png" alt="" width="100">
                 </div>
-                <div class="mx-100 flex z-50 " style="margin-left: 485px;">
+                <div class="mx-100 flex z-50 " style="margin-left: 450px;">
+                    <?php
+                    if ($_SESSION['role'] == 'Annoncer') {
+                        echo '<div class="h-10 w-10"  style="margin-left: 40px;">  </div>';
+                    }
+
+                    ?>
                     <a href="./MesAnnonces.php">
-                        <div class="b relative mx-10 h-10 w-36 flex justify-center items-center ">
-                            <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                        <div class="b relative mx-2 h-10 w-36 flex justify-center items-center ">
+                            <div
+                                class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
                             <span class="text-center text-white font-semibold z-10 pointer-events-none">Mes
-                                annonces!</span>
+                                annonces</span>
                             <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span class="absolute inline-flex rounded-full h-6 w-6 bg-red-500"></span>
                             </span>
                         </div>
                     </a>
+                    <?php
+                    if ($_SESSION['role'] == 'Admin') {
+                        echo '<a href="./AllUsers.php">
+                        <div class="b animate-bounce relative mx-10 h-10 w-36 flex justify-center items-center ">
+                            <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            </div>
+                            <span class="text-center text-white font-semibold z-10 pointer-events-none">All user!</span>
+                            <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
+                            </span>
+                        </div>
+                    </a>';
+                    } else {
+                        echo '<div class="h-10 w-8" >  </div>';
+                    }
+
+                    ?>
                     <a href="./CreateAnnonce.php">
                         <div class="b relative  h-10 w-36 flex justify-center items-center ">
-                            <div class="i h-10 w-36 bg-blue-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            <div
+                                class="i h-10 w-36 bg-blue-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
                             <span class="text-center text-white font-semibold z-10 pointer-events-none">Create
-                                annonce!</span>
-                            <span class="absolute flex h-6 w-6 top-0 right-0 transform translate-x-2.5 -translate-y-2.5">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                annonce</span>
+                            <span
+                                class="absolute flex h-6 w-6 top-0 right-0 transform translate-x-2.5 -translate-y-2.5">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                 <span class="absolute inline-flex rounded-full h-6 w-6 bg-blue-500"></span>
                             </span>
                         </div>
                     </a>
+                    <?php
+                    if ($_SESSION['role'] == 'Annoncer') {
+                        echo '<div class="h-10 w-10"  style="margin-left: 50px; margin-right: 0px;">  </div>';
+                    }
+
+                    ?>
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -25px;">
+                <div class="flex flex-row items-end " style="margin-left: 335px;margin-right: -30px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
@@ -97,13 +135,17 @@ $result = mysqli_query($connection, $query);
 
     </div>
     <!-- Sidebar -->
-    <aside class="h-screen z-20 fixed w-16 flex flex-col space-y-10 items-center justify-center  bg-gray-800 text-white">
+    <aside
+        class="h-screen z-20 fixed w-16 flex flex-col space-y-10 items-center justify-center  bg-gray-800 text-white">
 
         <!-- Courses -->
-        <a href="./<?php echo $_SESSION['role']; ?>.php">
-            <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        <a href="./<?php echo $_SESSION['role']?>.php">
+            <div
+                class="h-10 w-10 flex text-white items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
 
             </div>
@@ -112,9 +154,12 @@ $result = mysqli_query($connection, $query);
 
         <!-- Profile -->
         <a href="./UserProfile.php">
-            <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            <div
+                class="h-10 w-10 flex text-white items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
 
             </div>
@@ -123,9 +168,12 @@ $result = mysqli_query($connection, $query);
         <!-- Logout -->
         <div class="z-50">
             <a href="../includes/logout.php">
-                <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                <div
+                    class="h-10 w-10 flex text-white items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                     </svg>
                 </div>
             </a>
@@ -166,9 +214,9 @@ $result = mysqli_query($connection, $query);
 
 
                 <div class="pt-12 pb-8">
-                    <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                    <a href="./EditProfileFrom.php" class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
                         Edit Profile
-                    </button>
+                    </a>
                 </div>
 
                 <div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
