@@ -6,6 +6,10 @@ include_once '../includes/config.php';
 mysqli_select_db($connection, 'avito2');
 
 
+if($_SESSION['role']!= 'Admin'){
+    header('location:./Viewer.php');
+}
+
 $query = "SELECT * FROM annonce";
 $result = mysqli_query($connection, $query);
 
@@ -41,25 +45,34 @@ $result = mysqli_query($connection, $query);
                 <div class="w-20">
                     <img src="../pictures/logo.png" alt="" width="100">
                 </div>
-                <div class="mx-100 flex z-50 " style="margin-left: 485px;">
+                <div class="mx-100 flex z-50 " style="margin-left: 450px;">
                     <a href="./MesAnnonces.php">
-                        <div class="b relative mx-10 h-10 w-36 flex justify-center items-center ">
+                        <div class="b relative mx-2 h-10 w-36 flex justify-center items-center ">
                             <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
                             <span class="text-center text-white font-semibold z-10 pointer-events-none">Mes
-                                annonces!</span>
+                                annonces</span>
                             <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span class="absolute inline-flex rounded-full h-6 w-6 bg-red-500"></span>
                             </span>
                         </div>
                     </a>
-                    <a href="./CreateAnnonce.php">
+                    <a href="./AllUsers.php">
+                        <div class="b animate-bounce relative mx-10 h-10 w-36 flex justify-center items-center ">
+                            <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            </div>
+                            <span class="text-center text-white font-semibold z-10 pointer-events-none">All user!</span>
+                            <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
+                            </span>
+                        </div>
+                    </a>
+                    <a href="./MesAnnonces.php">
                         <div class="b relative  h-10 w-36 flex justify-center items-center ">
                             <div class="i h-10 w-36 bg-blue-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
                             <span class="text-center text-white font-semibold z-10 pointer-events-none">Create
-                                annonce!</span>
+                                annonce</span>
                             <span class="absolute flex h-6 w-6 top-0 right-0 transform translate-x-2.5 -translate-y-2.5">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                 <span class="absolute inline-flex rounded-full h-6 w-6 bg-blue-500"></span>
@@ -69,7 +82,7 @@ $result = mysqli_query($connection, $query);
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 435px;margin-right: -70px;">
+                <div class="flex flex-row items-end " style="margin-left: 335px;margin-right: -50px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
