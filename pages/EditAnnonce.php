@@ -25,6 +25,7 @@ if (isset($_GET['Id'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/Viewer.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -165,7 +166,14 @@ if (isset($_GET['Id'])) {
                             <?php echo $_SESSION['role']; ?>
                         </div>
                     </div>
-                    <div class="mx-4 h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
+                    <div
+                        class="relative mx-4 h-10 w-10  cursor-pointer bg-transparent ">
+                        <img src="<?php echo $_SESSION['UserImage']; ?>"
+                            class="sasawi  shadow-2xl hidden lg:block">
+                    </div>
+                    <div class="">
+                        <div class="sansan"></div>
+                    </div>
                 </div>
 
             </div>
