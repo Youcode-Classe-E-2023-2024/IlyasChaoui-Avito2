@@ -7,8 +7,8 @@ mysqli_select_db($connection, 'avito2');
 
 
 
-if($_SESSION['role']!= 'Viewer'){
-    
+if ($_SESSION['role'] != 'Viewer') {
+
     header('location:./Annoncer.php');
 }
 
@@ -47,10 +47,10 @@ $result = mysqli_query($connection, $query);
                 <div class="w-20">
                     <img src="../pictures/logo.png" alt="" width="100">
                 </div>
-                
+
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 1310px;margin-right: -50px;">
+                <div class="flex flex-row items-end " style="margin-left: 1310px;margin-right: -68px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
@@ -61,7 +61,14 @@ $result = mysqli_query($connection, $query);
                             <?php echo $_SESSION['role']; ?>
                         </div>
                     </div>
-                    <div class="mx-4 h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
+                    <div
+                        class="relative mx-4 h-10 w-10  cursor-pointer bg-transparent ">
+                        <img src="<?php echo $_SESSION['UserImage']; ?>"
+                            class="sasawi  shadow-2xl hidden lg:block">
+                    </div>
+                    <div class="">
+                        <div class="sansan"></div>
+                    </div>
                 </div>
 
             </div>
@@ -181,7 +188,7 @@ $result = mysqli_query($connection, $query);
     </div>
 
     <footer>
-        <div class="my-96 bg-gray-800 py-4 text-gray-400"   style="margin-top: 100vh;">
+        <div class="my-96 bg-gray-800 py-4 text-gray-400" style="margin-top: 100vh;">
             <div class="container px-4 mx-auto">
                 <div class="-mx-4 flex flex-wrap justify-between">
                     <div class="px-4 my-4 w-full xl:w-1/5">
