@@ -456,8 +456,8 @@ vscode-file: //vscode-app/c:/Users/youcode/AppData/Local/Programs/Microsoft%20VS
 .Description{
     color: white;
     font-weight: 300;
-    background-color: black;
-    opacity: 0.5;
+    background-color: rgb(0, 0, 0);
+    opacity: 1;
     border-radius: 10px;
     padding: 10px;
 }
