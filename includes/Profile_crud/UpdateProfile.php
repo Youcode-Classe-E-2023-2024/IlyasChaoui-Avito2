@@ -13,11 +13,36 @@ if (isset($_POST['user_name'])) {
     $userEmail = $_POST['user_email'];
     $userId = $_POST['user_id'];
 
+    $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
 
-    $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? WHERE Id=?";
-    $stmt = mysqli_prepare($connection, $Insert_sql);
-    mysqli_stmt_bind_param($stmt, "sssi", $userName, $userPhone, $userEmail, $userId);
-    $result = mysqli_stmt_execute($stmt);
+
+    $targetDir = "../../pictures/photoimport/";
+    $fileName = basename($_FILES["image"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+
+    if (in_array($fileType, $allowTypes)) {
+                // Upload file to server
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
+                    // Use prepared statement to prevent SQL injection
+                    $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? ,UserImage=? WHERE Id=?";
+                    $stmt = mysqli_prepare($connection, $Insert_sql);
+                    mysqli_stmt_bind_param($stmt, "ssssi", $userName, $userPhone, $userEmail, $targetFilePath, $userId);
+                    $result = mysqli_stmt_execute($stmt);
+                
+        
+                    
+                        // Redirect to a confirmation page
+                    header("Location: ../../pages/UserProfile.php?status=Publication updated");
+                    exit();
+                    }}
+
+
+    // $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? WHERE Id=?";
+    // $stmt = mysqli_prepare($connection, $Insert_sql);
+    // mysqli_stmt_bind_param($stmt, "sssi", $userName, $userPhone, $userEmail, $userId);
+    // $result = mysqli_stmt_execute($stmt);
 
     
     if ($result) {
