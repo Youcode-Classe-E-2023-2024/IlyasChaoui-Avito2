@@ -11,6 +11,8 @@ if (isset($_POST['user_name'])) {
     $userName = $_POST['user_name'];
     $userPhone = $_POST['user_phone'];
     $userEmail = $_POST['user_email'];
+    $userRole = $_POST['role'];
+
     $userId = $_POST['user_id'];
 
     $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
@@ -20,21 +22,26 @@ if (isset($_POST['user_name'])) {
     $fileName = basename($_FILES["image"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
+    
 
     if (in_array($fileType, $allowTypes)) {
                 // Upload file to server
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
                     // Use prepared statement to prevent SQL injection
-                    $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? ,UserImage=? WHERE Id=?";
+                    // echo $targetFilePath . "<br>" ;
+                    $finalpath = "../". str_replace('../', '', $targetFilePath);
+                    // echo $finalpath ;
+                    $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Role=? ,Email=? ,UserImage=? WHERE Id=?";
                     $stmt = mysqli_prepare($connection, $Insert_sql);
-                    mysqli_stmt_bind_param($stmt, "ssssi", $userName, $userPhone, $userEmail, $targetFilePath, $userId);
+                    mysqli_stmt_bind_param($stmt, "sssssi", $userName, $userPhone,$userRole, $userEmail, $finalpath, $userId);
                     $result = mysqli_stmt_execute($stmt);
                 
-        
+                    // die($userRole);
                     
                         // Redirect to a confirmation page
-                    header("Location: ../../pages/UserProfile.php?status=Publication updated");
+                        include_once '../includes/checkLogin.php';
+
+                    header("Location: ../../index.php");
                     exit();
                     }}
 
@@ -53,7 +60,7 @@ if (isset($_POST['user_name'])) {
         mysqli_close($connection);
         
         // Redirect to a confirmation page
-        header("Location: ../../pages/UserProfile.php?status=Publication updated");
+        // header("Location: ../../pages/UserProfile.php?status=Publication updated");
         exit();
     } else {
         echo "Error in updating data: " . mysqli_stmt_error($stmt);
