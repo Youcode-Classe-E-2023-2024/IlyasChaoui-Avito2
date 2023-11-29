@@ -7,6 +7,12 @@ $warningScript = '';
 
 mysqli_select_db($connection, 'avito2');
 
+$Id = $_SESSION['user'];
+
+$query = "SELECT * FROM Users WHERE Id = $Id";
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
+
 ?>
 
 
@@ -95,21 +101,28 @@ mysqli_select_db($connection, 'avito2');
                     }
 
                     ?>
-                    <a href="./MesAnnonces.php">
+                    <?php
+                    if ($_SESSION['role'] == 'Annoncer') {
+                        '';
+                    }
+                    ?>
+                    <?php
+                    if ($_SESSION['role'] == 'Admin') {
+                        echo '<a href="./MesAnnonces.php">
                         <div class="b relative mx-2 h-10 w-36 flex justify-center items-center ">
-                            <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            <div
+                                class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
                             <span class="text-center text-white font-semibold z-10 pointer-events-none">Mes
                                 annonces</span>
                             <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span class="absolute inline-flex rounded-full h-6 w-6 bg-red-500"></span>
                             </span>
                         </div>
                     </a>
-                    <?php
-                    if ($_SESSION['role'] == 'Admin') {
-                        echo '<a href="./AllUsers.php">
+                        <a href="./AllUsers.php">
                         <div class="b animate-bounce relative mx-10 h-10 w-36 flex justify-center items-center ">
                             <div class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
                             </div>
@@ -117,12 +130,7 @@ mysqli_select_db($connection, 'avito2');
                             <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
                             </span>
                         </div>
-                    </a>';
-                    } else {
-                        echo '<div class="h-10 w-8" >  </div>';
-                    }
-
-                    ?>
+                    </a>
                     <a href="./CreateAnnonce.php">
                         <div class="b relative  h-10 w-36 flex justify-center items-center ">
                             <div class="i h-10 w-36 bg-blue-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
@@ -135,6 +143,48 @@ mysqli_select_db($connection, 'avito2');
                             </span>
                         </div>
                     </a>
+                    ';
+                    } else {
+                        echo '<div class="h-10 w-8" >  </div>';
+                    }
+
+                    ?>
+                    <?php
+                    if ($_SESSION['role'] == 'Annoncer') {
+                        echo '<a href="./MesAnnonces.php">
+                        <div class="b relative mx-2 h-10 w-36 flex justify-center items-center ">
+                            <div
+                                class="i h-10 w-36 bg-red-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            </div>
+                            <span class="text-center text-white font-semibold z-10 pointer-events-none">Mes
+                                annonces</span>
+                            <span class="absolute flex h-6 w-6 mx-32 top-0 right-0 transform -translate-y-2.5">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="absolute inline-flex rounded-full h-6 w-6 bg-red-500"></span>
+                            </span>
+                        </div>
+                    </a>
+                       
+                    <a href="./CreateAnnonce.php">
+                        <div class="b relative  h-10 w-36 flex justify-center items-center ">
+                            <div class="i h-10 w-36 bg-blue-500 items-center rounded-xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out">
+                            </div>
+                            <span class="text-center text-white font-semibold z-10 pointer-events-none">Create
+                                annonce</span>
+                            <span class="absolute flex h-6 w-6 top-0 right-0 transform translate-x-2.5 -translate-y-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span class="absolute inline-flex rounded-full h-6 w-6 bg-blue-500"></span>
+                            </span>
+                        </div>
+                    </a>
+                    ';
+                    } else {
+                        echo '<div class="h-10 w-8" >  </div>';
+                    }
+
+                    ?>
+                    
                     <?php
                     if ($_SESSION['role'] == 'Annoncer') {
                         echo '<div class="h-10 w-10"  style="margin-left: 50px; margin-right: 0px;">  </div>';
@@ -269,7 +319,7 @@ mysqli_select_db($connection, 'avito2');
                                 </g>
                             </g>
                         </svg>
-                        <input type="hidden" name="oldimage" value="<?php echo $row['Image']; ?>">
+                        <input type="hidden" name="oldimage" value="<?php echo $row['UserImage']; ?>">
                         <input type="file" name="image" id="image" class="border-4 bg-black absolute w-96 mx-12 opacity-0">
                         <span class="pl-2 mx-1">Add Picture</span>
                     </button>
@@ -287,7 +337,7 @@ mysqli_select_db($connection, 'avito2');
                                                 <circle cx="7.04807" cy="6.97256" r="2.5" id="svg_3"></circle>
                                             </g>
                                         </svg>
-                                        <h1 class="inline text-2xl font-semibold leading-none">Old information</h1>
+                                        <h1 class="inline text-2xl font-semibold leading-none">Information</h1>
 
                                     </div>
                                     <div class="flex-none pt-2.5 pr-2.5 pl-1"></div>
