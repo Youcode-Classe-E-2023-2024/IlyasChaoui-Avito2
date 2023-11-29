@@ -102,7 +102,7 @@ $_SESSION['num_annonce'] = mysqli_num_rows($result);
                 </div>
 
                 <!-- Texto -->
-                <div class="flex flex-row items-end " style="margin-left: 335px;margin-right: -50px;">
+                <div class="flex flex-row items-end " style="margin-left: 335px;margin-right: -68px;">
                     <div>
                         <!-- Nome -->
                         <div class="text-md font-medium text-gray-500 ">
@@ -113,7 +113,14 @@ $_SESSION['num_annonce'] = mysqli_num_rows($result);
                             <?php echo $_SESSION['role']; ?>
                         </div>
                     </div>
-                    <div class="mx-4 h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
+                    <div
+                        class="relative mx-4 h-10 w-10  cursor-pointer bg-transparent ">
+                        <img src="<?php echo $_SESSION['UserImage']; ?>"
+                            class="sasawi  shadow-2xl hidden lg:block">
+                    </div>
+                    <div class="">
+                        <div class="sansan"></div>
+                    </div>
                 </div>
 
             </div>
