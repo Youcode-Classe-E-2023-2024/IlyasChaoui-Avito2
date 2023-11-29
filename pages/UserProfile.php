@@ -5,12 +5,11 @@ include_once '../includes/config.php';
 
 mysqli_select_db($connection, 'avito2');
 $ID = $_SESSION['user'];
-$select = "SELECT * FROM users WHERE Id = ? ";
-$stmt = mysqli_prepare($connection, $select);
-mysqli_stmt_bind_param($stmt, "i", $ID);
-$result = mysqli_stmt_execute($stmt);
-
-
+$select = "SELECT * FROM users WHERE Id = $ID ";
+$result = mysqli_query($connection, $select);
+$row = mysqli_fetch_assoc($result);
+// $replace = str_replace('../', '', $row['UserImage']);
+// die($replace);
 // $query = "SELECT * FROM annonce";
 // $result = mysqli_query($connection, $query);
 
@@ -259,7 +258,8 @@ $result = mysqli_stmt_execute($stmt);
         <!--Img Col-->
         <div class="w-full lg:w-2/5">
             <!-- Big profile image for side bar (desktop) -->
-            <img src="https://source.unsplash.com/MP0IUfwrn0A" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+            <img src="<?php echo $row['UserImage'];?>" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+            
             <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
 
         </div>
