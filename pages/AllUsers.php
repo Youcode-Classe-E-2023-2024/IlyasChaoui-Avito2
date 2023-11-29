@@ -186,14 +186,14 @@ $users = mysqli_query($connection, $usersQuery);
                                                 </div>
                                             </div>
 
-                                            <div class="box-down">
+                                            <div class="box-down ">
                                                 <div class="h-bg">
                                                     <div class="h-bg-inner"></div>
                                                 </div>
 
                                                 <a class="cart" href="#">
                                     
-                                                    <span class="text-white no-underline ">
+                                                    <span class="text-white mx-14 no-underline ">
                                                         <?php echo $row['Email'];  ?>
                                                     </span>
                                                 </a>
@@ -209,7 +209,7 @@ $users = mysqli_query($connection, $usersQuery);
                                                 <form action="../pages/MesAnnonces.php" method="get">
                                                     <input type="hidden" name="user_id" value="<?php echo $row['Id'] ?>">
                                                     <button type="submit" class="block animate-pulse mx-auto h-16 w-26 flex justify-center items-center" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleDelete(<?php echo $row['Id']; ?>)">
-                                                        <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
+                                                        <div class="i h-12 w-20 bg-green-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
                                                         <span class="text-center text-white font-semibold z-50 pointer-events-none">Annonces</span>
                                                     </button>
                                                 </form>
