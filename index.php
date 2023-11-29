@@ -1,6 +1,8 @@
 <?php
 
 include('./includes/config.php');
+include_once './includes/checkLogout.php';
+
 
 
 ?>
@@ -31,7 +33,7 @@ include('./includes/config.php');
             </div>
 
             <?php
-            session_start();
+            // session_start();
             // Check if there is an error message in the session
             if (isset($_SESSION['error_message'])) {
                 echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
