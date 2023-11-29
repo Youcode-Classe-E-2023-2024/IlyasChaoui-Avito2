@@ -5,6 +5,8 @@
 
 session_start();
 
+
+
 // $_SESSION["session"] = [
 //     'role' => '',
 //     'username' => '',
@@ -24,7 +26,6 @@ if (isset($_POST['submit'])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
-
         // Use password_verify to check if the entered password is correct
         if (password_verify($CheckPass, $row['Password'])) {
             // $_SESSION['session']['user'] = $row['Id'];
@@ -38,6 +39,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['Image'] = $row['Image'];
                 $_SESSION['PhoneNumber'] = $row['Phone_number'];
                 $_SESSION['role'] = $row['Role'];
+                $_SESSION['UserImage'] = $row['UserImage'];
                 $_SESSION['Email'] = $row['Email'];
                 $_SESSION['Password'] = $row['Password'];
                 header('location: ../pages/Annoncer.php');
@@ -49,6 +51,8 @@ if (isset($_POST['submit'])) {
                 $_SESSION['role'] = $row['Role'];
                 $_SESSION['Email'] = $row['Email'];
                 $_SESSION['Password'] = $row['Password'];
+                $_SESSION['UserImage'] = $row['UserImage'];
+
 
 
                 header('location: ../pages/Viewer.php');
@@ -61,19 +65,20 @@ if (isset($_POST['submit'])) {
                 $_SESSION['role'] = $row['Role'];
                 $_SESSION['Email'] = $row['Email'];
                 $_SESSION['Password'] = $row['Password'];
+                $_SESSION['UserImage'] = $row['UserImage'];
                 
                 header('location: ../pages/Admin.php');
             }
         } else {
 
             $_SESSION['error_message'] = 'Incorrect email or password!';
-            header('location: ../Login.php');
+            header('location: ../index.php');
             exit();
         }
     } else {
 
         $_SESSION['error_message'] = 'Incorrect email or password!';
-        header('location: ../Login.php');
+        header('location: ../index.php');
         exit();
     }
 }
