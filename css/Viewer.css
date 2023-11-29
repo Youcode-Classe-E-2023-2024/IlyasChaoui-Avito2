@@ -619,3 +619,17 @@ vscode-file: //vscode-app/c:/Users/youcode/AppData/Local/Programs/Microsoft%20VS
     text-transform: uppercase;
     white-space: nowrap;
 }
+
+.sasawi{
+    border-radius: 100px;
+}
+.sansan::before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    position: absolute;
+    bottom: 9px;
+    right: 30px;
+    border-radius: 50%;
+}
