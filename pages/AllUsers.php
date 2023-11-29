@@ -170,7 +170,7 @@ $users = mysqli_query($connection, $usersQuery);
                                     <div class="row">
                                         <div class="el-wrapper">
                                             <div class="box-up">
-                                                <!-- <img class="img" src="../pictures/photoimport/<?php echo $row['Image']; ?>" /> -->
+                                                <img src="<?php echo $row['UserImage']; ?>">
                                                 <div class="img-info">
                                                     <div class="info-inner">
                                                         <span class="p-name">
@@ -179,7 +179,7 @@ $users = mysqli_query($connection, $usersQuery);
 
                                                     </div>
                                                     <div class="a-size">
-                                                        <?php echo '<br> <br> <br>' .  '<span class="Description">' . '<span class="font-light";>Télephone : </span>' . ($row['Phone_number']) . '</span>' . '<br> <br><br>' . '<span class="Description">' . '<span class="font-light";>Les nombres des annonces : </span>' . '</span>'; ?>
+                                                        <?php echo '<br> <br> <br>' .  '<span class="Description">' . '<span class="font-light";>Télephone : </span>' . ($row['Phone_number']) . '</span>' . '<br> <br><br>'; ?>
                                                     </div>
 
 
@@ -203,15 +203,15 @@ $users = mysqli_query($connection, $usersQuery);
                                             <div class="flex flex-row justify-between">
                                                 <form action="../includes/users_crud/delete_user.php" method="get">
                                                     <input type="hidden" name="user_id" value="<?php echo $row['Id'] ?>">
-                                                <button type="submit" class="block animate-pulse mx-auto h-16 w-64 flex justify-center items-center" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleDelete(<?php echo $row['Id']; ?>)">
-                                                    <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
-                                                    <span class="text-center text-white font-semibold z-50 pointer-events-none">Delete</span>
-                                                </button>
+                                                    <button type="submit" class="block animate-pulse mx-auto h-16 w-64 flex justify-center items-center" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="handleDelete(<?php echo $row['Id']; ?>)">
+                                                        <div class="i h-12 w-20 bg-red-500 items-center rounded-2xl shadow-2xl cursor-pointer absolute overflow-hidden transform hover:scale-x-110 hover:scale-y-105 transition duration-300 ease-out"></div>
+                                                        <span class="text-center text-white font-semibold z-50 pointer-events-none">Delete</span>
+                                                    </button>
                                                 </form>
 
                                                 <form action="" method="post">
                                                     <input type="hidden" name="user_id" value="<?php echo $row['Id'] ?>">
-                                                
+
                                                 </form>
 
                                             </div>
@@ -351,7 +351,7 @@ $users = mysqli_query($connection, $usersQuery);
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        
+
 
 </body>
 
