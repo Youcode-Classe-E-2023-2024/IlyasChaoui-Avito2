@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         header('location: ../index.php');
         exit();
     } else {
-
+        
         // Insert the user into the database
         $insert = "INSERT INTO Users (Username, Role, Phone_number, Email, Password) VALUES ('$name', '$user_type', '$phonenumber', '$email', '$password')";
         mysqli_query($connection, $insert);
