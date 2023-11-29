@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['error_message'] = 'User already exists, change it!';
-        header('location: ../Login.php');
+        header('location: ../index.php');
         exit();
     } else {
 
@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 
 
     }
-    header('location: ../Login.php');
+    header('location: ../index.php');
     exit();
 }
 
