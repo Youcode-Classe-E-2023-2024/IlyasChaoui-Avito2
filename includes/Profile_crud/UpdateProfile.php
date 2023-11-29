@@ -1,6 +1,7 @@
 <?php
 $warningScript = '';
 
+
 session_start();
 
 if (isset($_POST['user_name'])) {
@@ -12,60 +13,76 @@ if (isset($_POST['user_name'])) {
     $userPhone = $_POST['user_phone'];
     $userEmail = $_POST['user_email'];
     $userRole = $_POST['role'];
-
     $userId = $_POST['user_id'];
+    $oldimage = $_POST['oldimage'];
 
-    $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
 
 
     $targetDir = "../../pictures/photoimport/";
     $fileName = basename($_FILES["image"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-    
+
+    $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
 
     if (in_array($fileType, $allowTypes)) {
-                // Upload file to server
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
-                    // Use prepared statement to prevent SQL injection
-                    // echo $targetFilePath . "<br>" ;
-                    $finalpath = "../". str_replace('../', '', $targetFilePath);
-                    // echo $finalpath ;
-                    $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Role=? ,Email=? ,UserImage=? WHERE Id=?";
-                    $stmt = mysqli_prepare($connection, $Insert_sql);
-                    mysqli_stmt_bind_param($stmt, "sssssi", $userName, $userPhone,$userRole, $userEmail, $finalpath, $userId);
-                    $result = mysqli_stmt_execute($stmt);
-                
-                    // die($userRole);
-                    
-                        // Redirect to a confirmation page
-                        include_once '../includes/checkLogin.php';
+        // Upload file to server
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
+            // Use prepared statement to prevent SQL injection
+            // echo $targetFilePath . "<br>" ;
+            $finalpath = "../" . str_replace('../', '', $targetFilePath);
+            // echo $finalpath ;
+            $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Role=? ,Email=? ,UserImage=? WHERE Id=?";
+            $stmt = mysqli_prepare($connection, $Insert_sql);
+            mysqli_stmt_bind_param($stmt, "sssssi", $userName, $userPhone, $userRole, $userEmail, $finalpath, $userId);
+            $result = mysqli_stmt_execute($stmt);
 
-                    header("Location: ../../index.php");
-                    exit();
-                    }}
+            // die($userRole);
+            $Update_sql = "SELECT * FROM Users WHERE Id = $userId";
+            $result = mysqli_query($connection, $Update_sql);
+            $row = mysqli_fetch_array($result);
+            $_SESSION['user'] = $row['Id'];
+            $_SESSION['username'] = $row['Username'];
+            $_SESSION['Image'] = $row['Image'];
+            $_SESSION['PhoneNumber'] = $row['Phone_number'];
+            $_SESSION['role'] = $row['Role'];
+            $_SESSION['UserImage'] = $row['UserImage'];
+            // die($_SESSION['UserImage']);
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['Password'] = $row['Password'];
 
-
-    // $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? WHERE Id=?";
-    // $stmt = mysqli_prepare($connection, $Insert_sql);
-    // mysqli_stmt_bind_param($stmt, "sssi", $userName, $userPhone, $userEmail, $userId);
-    // $result = mysqli_stmt_execute($stmt);
-
-    
-    if ($result) {
-        // Close the statement
-        mysqli_stmt_close($stmt);
-        
-        // Close the connection
-        mysqli_close($connection);
-        
-        // Redirect to a confirmation page
-        // header("Location: ../../pages/UserProfile.php?status=Publication updated");
-        exit();
+            header("Location: ../../pages/UserProfile.php");
+            exit();
+        }
     } else {
-        echo "Error in updating data: " . mysqli_stmt_error($stmt);
+        $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Role=? ,Email=? ,UserImage=? WHERE Id=?";
+        $stmt = mysqli_prepare($connection, $Insert_sql);
+        mysqli_stmt_bind_param($stmt, "sssssi", $userName, $userPhone, $userRole, $userEmail, $oldimage, $userId);
+        // Execute the statement
+        $result = mysqli_stmt_execute($stmt);
+        $Update_sql = "SELECT * FROM Users WHERE Id = $userId";
+            $result = mysqli_query($connection, $Update_sql);
+            $row = mysqli_fetch_array($result);
+            $_SESSION['user'] = $row['Id'];
+            $_SESSION['username'] = $row['Username'];
+            $_SESSION['Image'] = $row['UserImage'];
+            $_SESSION['PhoneNumber'] = $row['Phone_number'];
+            $_SESSION['role'] = $row['Role'];
+            $_SESSION['UserImage'] = $row['UserImage'];
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['Password'] = $row['Password'];
     }
-}
+};
+
+
+
+// $Insert_sql = "UPDATE users SET Username=?, Phone_number=?, Email=? WHERE Id=?";
+// $stmt = mysqli_prepare($connection, $Insert_sql);
+// mysqli_stmt_bind_param($stmt, "sssi", $userName, $userPhone, $userEmail, $userId);
+// $result = mysqli_stmt_execute($stmt);
+
+
+
 
 //     // Sanitize user input to prevent SQL injection
 //     $user_name = mysqli_real_escape_string($connection, $_POST['username']);
@@ -133,12 +150,12 @@ if (isset($_POST['user_name'])) {
 <!-- SweetAlert2 script -->
 <script>
     <?php if ($result) { ?>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 title: "Update!",
                 text: "Your annonce file has been uploaded!",
                 icon: "success"
-            }).then(function () {
+            }).then(function() {
                 window.location.href = '../../pages/MesAnnonces.php?status=Publication updated';
             });
         });
